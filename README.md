@@ -1,5 +1,14 @@
 [![Build Status](https://travis-ci.org/DFE-Digital/govuk-rails-boilerplate.svg?branch=master)](https://travis-ci.com/DFE-Digital/govuk-rails-boilerplate)
 
+# Academy Transfers Frontend
+
+This is a proof of concept Academy Transfers service. Built on the [govuk-rails-boilerplate](https://github.com/DFE-Digital/govuk-rails-boilerplate) template. This repository is the frontend component, it is designed to work with the [Academy Transfers API](https://github.com/DFE-Digital/academy-transfers-api).
+
+This is not part of live or production service. And it should not be used as one.
+
+More details on the how to use a boilerplate below.
+
+
 # GOV.UK Rails Boilerplate
 
 ## Prerequisites
