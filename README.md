@@ -2,7 +2,7 @@
 
 # Academy Transfers Frontend
 
-This is a Ruby on Rails boilerplate for the Academy Transfer service. 
+This is a proof of concept Academy Transfers service. Built on the [govuk-rails-boilerplate](https://github.com/DFE-Digital/govuk-rails-boilerplate) template. This repository is the frontend component, it is designed to work with the [Academy Transfers API](https://github.com/DFE-Digital/academy-transfers-api).
 
 This is not part of live or production service. And it should not be used as one.
 
