@@ -27,6 +27,12 @@ gem "foreman"
 # Canonical meta tag
 gem "canonical-rails"
 
+# Provides HTTP request functionality
+gem "faraday"
+
+# Manage Oauth2 authentication calls
+gem 'oauth2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
@@ -43,6 +49,12 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 3.33"
 
+  # Simplifies creating populated model instances
+  gem "factory_bot_rails"
+
+  # Creates fake data for testing
+  gem "faker"
+
   gem "dotenv-rails"
 end
 
@@ -58,6 +70,9 @@ end
 
 group :test do
   gem "webdrivers", "~> 4.4"
+
+  # Allows outgoing web calls to be mocked
+  gem "webmock"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
