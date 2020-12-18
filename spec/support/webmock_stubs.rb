@@ -15,3 +15,16 @@ def mock_trust_search(search_string, trusts_to_return)
     .with(headers: {"Authorization"=>"Bearer #{access_token}"})
     .to_return(body: body.to_json)
 end
+
+def mock_trust_find(trust)
+  url = File.join(Trust::SEARCH_URL, trust.id)
+
+  access_token = SecureRandom.uuid
+  mock_bearer_token_retrieval(access_token)
+
+  body = trust.as_json.transform_keys { |key| key.camelcase(:lower) }
+
+  stub_request(:get, url)
+    .with(headers: {"Authorization"=>"Bearer #{access_token}"})
+    .to_return(body: body.to_json)
+end

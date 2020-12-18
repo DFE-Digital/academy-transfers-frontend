@@ -1,0 +1,14 @@
+<% content_for(:page_header) { t(".page_header") } %>
+
+<div class="govuk-width-container"><br>
+  <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <ul>
+    <% @trusts.each do |trust| %>
+      <li><%= link_to trust.trust_name, trust_path(trust.id) %></li>
+    <% end %>
+  </div>
+</div>

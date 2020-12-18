@@ -1,0 +1,29 @@
+<% content_for(:page_header) { t(".page_header") } %>
+
+<div class="govuk-width-container"><br>
+  <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
+</div>
+
+<dl class="govuk-summary-list govuk-summary-list--no-border">
+  <% [
+       :trust_name,
+       :companies_house_number,
+       :establishment_type,
+       :trust_reference_number
+     ].each do |attribute| %>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key"><%= t(".#{attribute}") %></dt>
+      <dd class="govuk-summary-list__value"><%= @trust.send(attribute) %></dd>
+    </div>
+  <% end %>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key"><%= t(".address") %></dt>
+    <dd class="govuk-summary-list__value">
+      <% @trust.address.split(/[\n\r$\,]+/).each do |address_line| %>
+        <p class="govuk-body"><%= address_line %></p>
+      <% end %>
+    </dd>
+  </div>
+</dl>
+
