@@ -56,6 +56,18 @@ or
 bundle exec scss-lint app/webpacker/styles
 ```
 
+## Configuration
+
+Custom credentials are configured in config/application.rb and are accessed within code via
+[Rails.configuration.x](https://guides.rubyonrails.org/configuring.html#custom-configuration)
+
+
+In development, [Rails Credentials](https://guides.rubyonrails.org/security.html#custom-credentials) are used to store
+secret credentials.
+
+Credentials can also be defined via environment variables (see config/application.rb) which is the intention for
+production environments. Credentials defined via environment credential take precidence.
+
 ## Deploying on GOV.UK PaaS
 
 ### Prerequisites

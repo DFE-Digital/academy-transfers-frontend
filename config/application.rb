@@ -32,5 +32,9 @@ module GovukRailsBoilerplate
     config.exceptions_app = routes
 
     config.middleware.use Rack::Deflater
+
+    Rails.configuration.x.api.client_scope = ENV.fetch("API_CLIENT_SCOPE", Rails.application.credentials.api[:client_scope])
+    Rails.configuration.x.api.client_id = ENV.fetch("API_CLIENT_ID", Rails.application.credentials.api[:client_id])
+    Rails.configuration.x.api.client_secret = ENV.fetch("API_CLIENT_SECRET", Rails.application.credentials.api[:client_secret])
   end
 end
