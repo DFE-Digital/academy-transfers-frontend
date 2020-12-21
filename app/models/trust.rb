@@ -15,6 +15,16 @@ class Trust
       payload = JSON.parse(response.body)
       payload.map { |input| new(input) }
     end
+
+    def find(id)
+      token = BearerToken.token
+      url = File.join(SEARCH_URL, id)
+      response = Faraday.get(url) do |req|
+        req.headers['Authorization']="Bearer #{token}"
+      end
+      payload = JSON.parse(response.body)
+      new(payload)
+    end
   end
 
   def initialize(attributes = {})

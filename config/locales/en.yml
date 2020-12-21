@@ -30,4 +30,23 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  default_page_header: Academy Transfers
+
+  trusts:
+    index:
+      page_header: Transfer an academy to another trust
+      heading: Add the outgoing trust name
+      search_label: Search by name, trust reference number or companies house number
+      search_button: Search
+    search:
+      page_header: Transfer an academy to another trust
+      heading: Select Trust
+    show:
+      page_header: Transfer an academy to another trust
+      heading: Outgoing trust details
+      trust_name: Name
+      companies_house_number: Companies House Number
+      establishment_type: Type
+      trust_reference_number: Trust Reference Number
+      address: Address
+      
