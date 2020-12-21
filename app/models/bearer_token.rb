@@ -17,9 +17,9 @@ class BearerToken
     @response ||= Faraday.post(
       SOURCE_URL,
       grant_type: 'client_credentials',
-      scope: Rails.application.credentials.api[:client_scope],
-      client_id: Rails.application.credentials.api[:client_id],
-      client_secret: Rails.application.credentials.api[:client_secret]
+      scope: Rails.configuration.x.api.client_scope,
+      client_id: Rails.configuration.x.api.client_id,
+      client_secret: Rails.configuration.x.api.client_secret
     )
   end
 end
