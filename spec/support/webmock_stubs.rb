@@ -12,7 +12,7 @@ def mock_trust_search(search_string, trusts_to_return)
   body = trusts_to_return.map { |trust| trust.as_json.transform_keys { |key| key.camelcase(:lower) } }
 
   stub_request(:get, uri.to_s)
-    .with(headers: {"Authorization"=>"Bearer #{access_token}"})
+    .with(headers: { "Authorization" => "Bearer #{access_token}" })
     .to_return(body: body.to_json)
 end
 
@@ -25,6 +25,6 @@ def mock_trust_find(trust)
   body = trust.as_json.transform_keys { |key| key.camelcase(:lower) }
 
   stub_request(:get, url)
-    .with(headers: {"Authorization"=>"Bearer #{access_token}"})
+    .with(headers: { "Authorization" => "Bearer #{access_token}" })
     .to_return(body: body.to_json)
 end

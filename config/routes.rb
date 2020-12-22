@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :trusts, only: [:index, :show] do
+  resources :trusts, only: %i[index show] do
     get :search, on: :collection
   end
 

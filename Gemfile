@@ -31,7 +31,7 @@ gem "canonical-rails"
 gem "faraday"
 
 # Manage Oauth2 authentication calls
-gem 'oauth2'
+gem "oauth2"
 
 # Creates fake data for testing
 gem "faker"
