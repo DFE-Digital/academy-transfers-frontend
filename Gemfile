@@ -33,6 +33,9 @@ gem "faraday"
 # Manage Oauth2 authentication calls
 gem 'oauth2'
 
+# Creates fake data for testing
+gem "faker"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
@@ -51,9 +54,6 @@ group :development, :test do
 
   # Simplifies creating populated model instances
   gem "factory_bot_rails"
-
-  # Creates fake data for testing
-  gem "faker"
 
   gem "dotenv-rails"
 end
