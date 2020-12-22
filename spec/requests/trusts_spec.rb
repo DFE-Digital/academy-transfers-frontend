@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "/trusts", type: :request do
   let(:trust) { build :trust }
@@ -37,5 +37,4 @@ RSpec.describe "/trusts", type: :request do
       expect(response).to be_successful
     end
   end
-
 end

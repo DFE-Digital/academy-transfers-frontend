@@ -31,7 +31,7 @@ gem "canonical-rails"
 gem "faraday"
 
 # Manage Oauth2 authentication calls
-gem 'oauth2'
+gem "oauth2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

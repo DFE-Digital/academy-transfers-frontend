@@ -1,8 +1,6 @@
 class TrustsController < ApplicationController
-  
   # GET /trusts
-  def index
-  end
+  def index; end
 
   # GET /trusts/search
   def search
@@ -13,5 +11,4 @@ class TrustsController < ApplicationController
   def show
     @trust = Trust.find(params[:id])
   end
-
 end

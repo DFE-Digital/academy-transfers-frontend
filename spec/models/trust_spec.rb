@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Trust, type: :model do
   let(:trust) { build :trust }
@@ -10,7 +10,7 @@ RSpec.describe Trust, type: :model do
       mock_trust_search("something", [trust])
     end
 
-    it "returns matching trust" do     
+    it "returns matching trust" do
       expect(results.length).to eq(1)
       expect(results.first.as_json).to eq(trust.as_json)
     end
