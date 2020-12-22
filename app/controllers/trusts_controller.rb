@@ -1,4 +1,6 @@
 class TrustsController < ApplicationController
+  before_action :authenticate_user!
+
   # GET /trusts
   def index; end
 

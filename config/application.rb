@@ -33,8 +33,13 @@ module GovukRailsBoilerplate
 
     config.middleware.use Rack::Deflater
 
+    # API Client credentials
     Rails.configuration.x.api.client_scope = ENV.fetch("API_CLIENT_SCOPE", Rails.application.credentials.api[:client_scope])
     Rails.configuration.x.api.client_id = ENV.fetch("API_CLIENT_ID", Rails.application.credentials.api[:client_id])
     Rails.configuration.x.api.client_secret = ENV.fetch("API_CLIENT_SECRET", Rails.application.credentials.api[:client_secret])
+
+    # Authentication credentials
+    Rails.configuration.x.default_user.username = ENV.fetch("DEFAULT_USER_USERNAME", Rails.application.credentials.default_user[:username])
+    Rails.configuration.x.default_user.password = ENV.fetch("DEFAULT_USER_PASSWORD", Rails.application.credentials.default_user[:password])
   end
 end

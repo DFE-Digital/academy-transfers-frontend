@@ -1,0 +1,23 @@
+<% content_for(:page_header) { t(".page_header") } %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="govuk-form-group">
+        <%= f.label :username, class: "govuk-hint" %>
+        <%= f.text_field :username, autofocus: true, class: "govuk-input" %>
+      </div>
+
+      <div class="govuk-form-group">
+        <%= f.label :password, class: "govuk-hint" %>
+        <%= f.password_field :password, class: "govuk-input" %>
+      </div>
+
+      <%= f.submit t(".log_in"), class: "govuk-button" %>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+
+  </div>
+</div>
