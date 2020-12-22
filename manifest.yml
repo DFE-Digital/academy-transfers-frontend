@@ -1,6 +1,9 @@
 ---
 applications:
-- name: govuk-rails-boilerplate
+- name: academy-transfers-prototype-frontend
+  memory: 256M
   buildpacks:
     - https://github.com/cloudfoundry/ruby-buildpack.git
     - https://github.com/cloudfoundry/nodejs-buildpack
+  services:
+    - academy-transfers-prototype-frontend-db
