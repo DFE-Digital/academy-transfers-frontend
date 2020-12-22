@@ -3,6 +3,11 @@ require "rails_helper"
 RSpec.describe "/trusts", type: :request do
   let(:trust) { build :trust }
   let(:query) { trust.trust_name }
+  let(:user) { create :user }
+
+  before do
+    sign_in user
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
