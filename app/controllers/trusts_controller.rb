@@ -6,7 +6,14 @@ class TrustsController < ApplicationController
 
   # GET /trusts/search
   def search
-    @trusts = Trust.search(params[:query])
+    @trusts = Trust.search(params["input-autocomplete"])
+
+    respond_to do |format|
+      format.html do
+        redirect_to trust_path(@trusts.first.id) if @trusts.one?
+      end
+      format.json { render json: @trusts.map(&:trust_name) }
+    end
   end
 
   # GET /trusts/1
