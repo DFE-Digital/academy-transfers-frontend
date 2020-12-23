@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "trusts#index"
-  
+
   devise_for :users
 
   resources :trusts, only: %i[index show] do
