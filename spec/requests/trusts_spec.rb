@@ -5,8 +5,11 @@ RSpec.describe "/trusts", type: :request do
   let(:query) { trust.trust_name }
   let(:trusts) { [trust] }
   let(:user) { create :user }
+  let(:redis) { Redis.new }
+  let(:redis_key) { "test_block_cache_trusts_#{query}" }
 
   before do
+    redis.del(redis_key)
     sign_in user
   end
 
@@ -45,8 +48,9 @@ RSpec.describe "/trusts", type: :request do
 
   describe "GET /search.json" do
     let(:query) { Faker::Educator.secondary_school }
-    let(:trusts) { build_list :trust, 2, trust_name: query }
-    let(:trust) { trusts.first }
+    let(:trust) { build :trust, trust_name: "#{query} one" }
+    let(:trust_two) { build :trust, trust_name: "#{query} two" }
+    let(:trusts) { [trust, trust_two] }
 
     before do
       mock_trust_search(query, trusts)
@@ -54,7 +58,7 @@ RSpec.describe "/trusts", type: :request do
     end
 
     it "returns the trust names" do
-      expect(response.body).to eq([query, query].to_json)
+      expect(response.body).to eq([trust.trust_name, trust_two.trust_name].to_json)
     end
   end
 

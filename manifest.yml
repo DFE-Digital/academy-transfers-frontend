@@ -7,3 +7,4 @@ applications:
     - https://github.com/cloudfoundry/nodejs-buildpack
   services:
     - academy-transfers-prototype-frontend-db
+    - academy-transfers-prototype-frontend-redis

@@ -4,15 +4,25 @@ RSpec.describe Trust, type: :model do
   let(:trust) { build :trust }
 
   describe ".search" do
-    let(:results) { described_class.search("something") }
+    let(:query) { Faker::Lorem.word }
+    let(:results) { described_class.search(query) }
+    let(:redis) { Redis.new }
+    let(:redis_key) { "test_block_cache_trusts_#{query}" }
 
     before do
-      mock_trust_search("something", [trust])
+      redis.del(redis_key)
+      mock_trust_search(query, [trust])
     end
 
     it "returns matching trust" do
       expect(results.length).to eq(1)
       expect(results.first.as_json).to eq(trust.as_json)
+    end
+
+    it "caches result in redis" do
+      results
+      # JSON response is cached so mismatch between keys (camelcase in JSON), so just checking trust id within cached data
+      expect(redis.get(redis_key)).to include(trust.id)
     end
   end
 
