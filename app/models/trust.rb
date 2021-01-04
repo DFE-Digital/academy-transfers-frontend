@@ -9,10 +9,13 @@ class Trust
   class << self
     def search(content)
       token = BearerToken.token
-      response = Faraday.get(SEARCH_URL, search: content) do |req|
-        req.headers["Authorization"] = "Bearer #{token}"
+      payload = BlockCache.with(content, namespace: :trusts) do
+        response = Faraday.get(SEARCH_URL, search: content) do |req|
+          req.headers["Authorization"] = "Bearer #{token}"
+        end
+        response.body
       end
-      payload = JSON.parse(response.body)
+      payload = JSON.parse(payload)
       payload.map { |input| new(input) }
     end
 
