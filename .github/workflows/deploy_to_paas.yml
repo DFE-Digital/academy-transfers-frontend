@@ -1,0 +1,22 @@
+---
+name: Deploy to Cloud Foundry
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: citizen-of-planet-earth/cf-cli-action@master
+      with:
+        cf_api: https://api.london.cloud.service.gov.uk
+        cf_username: ${{ secrets.CF_USER }}
+        cf_password: ${{ secrets.CF_PASSWORD }}
+        cf_org: dfe-digital
+        cf_space: academy-transfers-prototype
+        command: push -f manifest.yml
