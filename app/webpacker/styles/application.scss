@@ -11,3 +11,7 @@ $govuk-image-url-function: frontend-image-url;
 
 @import "~govuk-frontend/govuk/all";
 @import "autocomplete";
+
+.sign-out {
+  float: right;
+}
