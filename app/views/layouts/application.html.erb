@@ -42,6 +42,9 @@
         </div>
         <div class="govuk-header__content">
           <%= link_to page_header_label, "/", class: "govuk-header__link govuk-header__link--service-name" %>
+          <nav class="sign-out">
+            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "govuk-button govuk-button--secondary") if user_signed_in? %>
+          </nav>
         </div>
       </div>
     </header>
@@ -51,7 +54,6 @@
         <%= render "flash_notice", notice: notice if notice %>
         <%= render "flash_alert", alert: alert if alert %>
         <%= yield %>
-        <%= link_to('Logout', destroy_user_session_path, method: :delete) if user_signed_in? %>
       </main>
     </div>
 

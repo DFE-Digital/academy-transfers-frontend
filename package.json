@@ -4,12 +4,12 @@
   },
   "dependencies": {
     "@rails/webpacker": "^5.2.1",
+    "accessible-autocomplete": "^2.0.3",
     "govuk-frontend": "^3.9.1",
     "rails-ujs": "^5.2.4",
     "serialize-javascript": "^5.0.1",
     "set-value": "^3.0.2",
-    "turbolinks": "^5.2.0",
-    "accessible-autocomplete": "^2.0.3"
+    "turbolinks": "^5.2.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
