@@ -2,7 +2,12 @@ inherit_gem:
   rubocop-govuk:
     - config/default.yml
     - config/rails.yml
+
 AllCops:
   Exclude:
     - node_modules/**/*
     - db/schema.rb
+    
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"

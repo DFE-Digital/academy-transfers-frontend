@@ -32,6 +32,12 @@
 en:
   default_page_header: Academy Transfers
 
+  academies:
+    index:
+      page_header: Transfer an academy to another trust
+      heading: Add the transferring academies
+      hint: Select all the academies that are transferring.
+      submit: Save and continue
   trusts:
     index:
       page_header: Transfer an academy to another trust
@@ -49,4 +55,10 @@ en:
       establishment_type: Type
       trust_reference_number: Trust Reference Number
       address: Address
+      next_action_link: Select Trust
+
+  errors:
+    summary: There is a problem
+    trust:
+      no_academy_selected: An academy must be selected
       

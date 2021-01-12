@@ -21,4 +21,10 @@ class Academy
     attributes.transform_keys! { |key| key.to_s.underscore }
     super
   end
+
+  def academy_name_with_urn
+    return academy_name if urn.blank?
+
+    "#{academy_name} (URN #{urn})"
+  end
 end

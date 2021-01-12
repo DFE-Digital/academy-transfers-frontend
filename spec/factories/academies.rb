@@ -11,6 +11,6 @@ FactoryBot.define do
     diocese_name { "Not applicable" }
     religious_ethos { "Does not apply" }
     ofsted_rating { ["Outstanding", "Good", "Requires Improvement", "Inadequate"].sample }
-    ofsted_inspection_date { Faker::Date.backward(days: 100).to_time.to_json }
+    ofsted_inspection_date { 10.days.ago.to_json }
   end
 end

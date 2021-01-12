@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Academy, type: :model do
   let(:trust) { build :trust }
