@@ -5,21 +5,8 @@ class BlockCache
     new(key, namespace: namespace, &block).result
   end
 
-  def self.redis
-    @redis ||= Redis.new(redis_credentials)
-  end
-
-  def self.redis_credentials
-    vcap_services = ENV["VCAP_SERVICES"]
-    return {} if vcap_services.blank?
-
-    @redis_credentials ||= begin
-      credentials = JSON.parse(vcap_services)
-      url = credentials.dig("redis", 0, "credentials", "uri")
-      url ? { url: url } : {}
-    end
-  end
-
+  require "concerns/redis_methods"
+  extend RedisMethods
   delegate :redis, to: :class
 
   attr_reader :key, :namespace, :block
