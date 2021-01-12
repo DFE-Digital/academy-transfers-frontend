@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "trusts#index"
+  root to: "dashboard#index"
 
   devise_for :users
 

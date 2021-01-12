@@ -38,6 +38,12 @@ en:
       heading: Add the transferring academies
       hint: Select all the academies that are transferring.
       submit: Save and continue
+  dashboard:
+    index:
+      page_header: Manage trusts and academy schools
+      heading: Dashboard
+      new_academy_transfer: Set up a new academy transfer project
+      new_academy_transfer_button: Start a new project
   trusts:
     index:
       page_header: Transfer an academy to another trust
