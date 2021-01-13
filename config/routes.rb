@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   resources :trusts, only: %i[index show] do
     get :search, on: :collection
     resources :academies, only: %i[index create]
-    resources :incoming_trusts, only: %i[index show], path: :incoming do
-      get :search, on: :collection
+    resources :incoming_trusts, only: %i[index show create], path: :incoming do
+      collection do
+        get :identified
+        get :search
+      end
     end
   end
 

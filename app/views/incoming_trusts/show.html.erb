@@ -1,2 +1,71 @@
-<h1>IncomingTrusts#show</h1>
-<p>Find me in app/views/incoming_trusts/show.html.erb</p>
+<% content_for(:page_header) { t(".page_header") } %>
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
+</div>
+
+<div class="govuk-width-container">
+  <h2 class="govuk-heading-m"><%= t(".outgoing_trust") %></h2>
+  <dl class="govuk-summary-list">
+    <% [
+         :trust_name,
+         :trust_reference_number
+       ].each do |attribute| %>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key"><%= t(".#{attribute}") %></dt>
+        <dd class="govuk-summary-list__value"><%= @outgoing_trust.send(attribute) %></dd>
+      </div>
+    <% end %>
+  </dl>
+</div>
+
+<div class="govuk-width-container">
+  <h2 class="govuk-heading-m"><%= t("academy_details") %></h2>
+
+  <% @academies.each do |academy| %>
+    <dl class="govuk-summary-list">
+      <% [
+         :academy_name,
+         :urn,
+         :local_authority_name,
+         :establishment_type,
+         :religious_character,
+         :ofsted_rating,
+         :ofsted_inspection_date_formatted,
+         :pfi
+       ].each do |attribute| %>
+          <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"><%= t(".#{attribute}") %></dt>
+          <dd class="govuk-summary-list__value"><%= academy.send(attribute) %></dd>
+        </div>
+      <% end %>
+    </dl>
+  <% end %>
+</div>
+
+<div class="govuk-width-container">
+  <h2 class="govuk-heading-m"><%= t(".incoming_trusts") %></h2>
+
+  <dl class="govuk-summary-list">
+    <% [
+         :trust_name,
+         :companies_house_number,
+         :trust_reference_number,
+         :establishment_type
+       ].each do |attribute| %>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key"><%= t(".#{attribute}") %></dt>
+        <dd class="govuk-summary-list__value"><%= @incoming_trust.send(attribute) %></dd>
+      </div>
+    <% end %>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key"><%= t(".address") %></dt>
+      <dd class="govuk-summary-list__value">
+        <% @incoming_trust.address.split(/[\n\r$\,]+/).each do |address_line| %>
+          <p class="govuk-body"><%= address_line %></p>
+        <% end %>
+      </dd>
+    </div>
+  </dl>
+</div>
