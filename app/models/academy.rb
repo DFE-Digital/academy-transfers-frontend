@@ -27,4 +27,10 @@ class Academy
 
     "#{academy_name} (URN #{urn})"
   end
+
+  def ofsted_inspection_date_formatted
+    return if ofsted_inspection_date.blank?
+
+    Date.parse(ofsted_inspection_date).to_s(:govuk)
+  end
 end

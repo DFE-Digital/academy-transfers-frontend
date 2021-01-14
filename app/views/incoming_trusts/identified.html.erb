@@ -1,0 +1,19 @@
+<% content_for(:page_header) { t(".page_header") } %>
+
+<div class="govuk-width-container"><br>
+  <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= form_with url: search_trust_incoming_trusts_path, method: :get, local: true do |form| %>
+
+      <div class="govuk-form-group">
+        <%= form.label :autocomplete_trusts, t(".search_label"), class: "govuk-hint" %>
+        <div id="autocomplete_trusts"></div>
+      </div>
+      <%= form.submit t(".search_button"), class: "govuk-button" %>
+    <% end %>
+  </div>
+</div>

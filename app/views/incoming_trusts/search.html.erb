@@ -1,2 +1,14 @@
-<h1>IncomingTrusts#search</h1>
-<p>Find me in app/views/incoming_trusts/search.html.erb</p>
+<% content_for(:page_header) { t(".page_header") } %>
+
+<div class="govuk-width-container"><br>
+  <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <ul>
+    <% @trusts.each do |trust| %>
+      <li><%= link_to trust.trust_name, trust_incoming_trust_path(params[:trust_id], trust.id) %></li>
+    <% end %>
+  </div>
+</div>

@@ -44,6 +44,25 @@ en:
       heading: Dashboard
       new_academy_transfer: Set up a new academy transfer project
       new_academy_transfer_button: Start a new project
+  incoming_trusts:
+    index:
+      page_header: Transfer an academy to another trust
+      heading: Has an incoming trust been identified?
+      submit: Continue
+    identified:
+      page_header: Transfer an academy to another trust
+      heading: Add the incoming trust name
+      search_label: Search by name, trust reference number or companies house number
+      search_button: Search and continue
+    search:
+      page_header: Transfer an academy to another trust
+      heading: Select incoming trust
+    show:
+      page_header: Transfer an academy to another trust
+      heading: Check trust and academy details
+      outgoing_trust: Outgoing trust
+      academy_details: Academy details
+      incoming_trusts: Incoming trusts
   trusts:
     index:
       page_header: Transfer an academy to another trust
@@ -67,4 +86,9 @@ en:
     summary: There is a problem
     trust:
       no_academy_selected: An academy must be selected
+    must_select_yes_or_no: Yes or No must be selected
+
+  generic:
+    yes: Yes
+    no: No
       
