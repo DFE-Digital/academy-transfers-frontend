@@ -36,6 +36,17 @@ def mock_academies_belonging_to_trust(trust, academies)
     .to_return(body: body.to_json)
 end
 
+def mock_project_save(project, response_body = {})
+  url = Project::SAVE_URL
+  mock_bearer_token_retrieval(mock_api_access_token)
+
+  stub_request(:post, url)
+    .with(
+      body: project.api_payload.to_json,
+      headers: { "Authorization" => "Bearer #{mock_api_access_token}" },
+    ).to_return(body: response_body)
+end
+
 def mock_api_access_token
   @mock_api_access_token ||= SecureRandom.uuid
 end

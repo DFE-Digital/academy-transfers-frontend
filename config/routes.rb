@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         get :search
       end
     end
+    resources :projects, only: %i[create]
   end
 
   get "/pages/:page", to: "pages#show"
