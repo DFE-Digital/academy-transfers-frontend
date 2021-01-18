@@ -63,6 +63,7 @@ en:
       outgoing_trust: Outgoing trust
       academy_details: Academy details
       incoming_trusts: Incoming trusts
+      next_action_link: Save and continue
   trusts:
     index:
       page_header: Transfer an academy to another trust
