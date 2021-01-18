@@ -42,8 +42,20 @@ en:
     index:
       page_header: Manage trusts and academy schools
       heading: Dashboard
+      tab_headers:
+        transfers: Transfers
+        conversions: Conversions
+        significant_change: Signficant Change
+        concerns: Concerns
+    transfers:
       new_academy_transfer: Set up a new academy transfer project
       new_academy_transfer_button: Start a new project
+    conversions:
+      sub_heading: Conversions
+    significant_change:
+      sub_heading: Significant Change
+    concerns:
+      sub_heading: Concerns
   incoming_trusts:
     index:
       page_header: Transfer an academy to another trust
