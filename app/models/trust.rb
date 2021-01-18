@@ -1,7 +1,7 @@
 class Trust
   include ActiveModel::Model
 
-  SEARCH_URL = "https://academy-transfers-prototype-api.london.cloudapps.digital/trusts".freeze
+  SEARCH_URL = File.join(Rails.configuration.x.api.root_url, "trusts").freeze
 
   attr_accessor :id, :trust_name, :companies_house_number, :trust_reference_number, :address,
                 :establishment_type, :establishment_type_group, :ukprn, :upin

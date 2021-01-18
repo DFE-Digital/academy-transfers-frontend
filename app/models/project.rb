@@ -1,7 +1,7 @@
 class Project
   include ActiveModel::Model
 
-  SAVE_URL = "https://academy-transfers-prototype-api.london.cloudapps.digital/projects".freeze
+  SAVE_URL = File.join(Rails.configuration.x.api.root_url, "projects").freeze
 
   STATUS = {
     in_progress: 1,
