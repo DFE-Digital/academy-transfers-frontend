@@ -1,6 +1,9 @@
 class TrustsController < ApplicationController
   before_action :authenticate_user!
 
+  breadcrumb :dashboard, :root_path
+  breadcrumb :add_new_project, :trusts_path
+
   # GET /trusts
   def index; end
 
@@ -19,5 +22,6 @@ class TrustsController < ApplicationController
   # GET /trusts/1
   def show
     @trust = Trust.find(params[:id])
+    breadcrumb :trust_details, trust_path(@trust.id)
   end
 end
