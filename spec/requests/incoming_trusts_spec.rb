@@ -4,6 +4,7 @@ RSpec.describe "IncomingTrusts", type: :request do
   let(:trust) { build :trust }
   let(:outgoing_trust) { trust }
   let(:incoming_trust) { build :trust }
+  let(:session_store) { SessionStore.new(user, trust.id) }
   let(:user) { create :user }
 
   before { sign_in user }
@@ -27,12 +28,22 @@ RSpec.describe "IncomingTrusts", type: :request do
       expect(response).to redirect_to(identified_trust_incoming_trusts_path(trust.id))
     end
 
+    it "records choice in session_store" do
+      subject
+      expect(session_store.get(:incoming_trust_identified)).to eq(trust_identified)
+    end
+
     context "when no trust identified" do
       let(:trust_identified) { "no" }
 
-      xit "redirects to ..." do
+      it "redirects to identified" do
         subject
-        expect(response).to redirect_to(:tbc)
+        expect(response).to redirect_to(identified_trust_incoming_trusts_path(trust.id))
+      end
+
+      it "records choice in session_store" do
+        subject
+        expect(session_store.get(:incoming_trust_identified)).to eq(trust_identified)
       end
     end
 
@@ -91,7 +102,6 @@ RSpec.describe "IncomingTrusts", type: :request do
   end
 
   describe "GET /trusts/:trust_id/incoming/:id" do
-    let(:session_store) { SessionStore.new(user, trust.id) }
     let(:academy) { build :academy }
 
     before do

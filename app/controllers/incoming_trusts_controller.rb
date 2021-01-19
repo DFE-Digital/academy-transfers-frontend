@@ -4,11 +4,9 @@ class IncomingTrustsController < ApplicationController
   def index; end
 
   def create
-    case params[:trust_identified]
-    when "yes"
+    if trust_identified
+      session_store.set :incoming_trust_identified, trust_identified
       redirect_to identified_trust_incoming_trusts_path(outgoing_trust_id)
-    when "no"
-      render plain: "Redirect to page not build yet"
     else
       @error = I18n.t("errors.must_select_yes_or_no")
       render :index
@@ -42,5 +40,9 @@ private
 
   def outgoing_trust_id
     @outgoing_trust_id = params[:trust_id]
+  end
+
+  def trust_identified
+    params[:trust_identified]
   end
 end
