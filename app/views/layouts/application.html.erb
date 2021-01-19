@@ -51,6 +51,7 @@
 
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper " id="main-content" role="main">
+        <%= render "breadcrumbs" %>
         <%= render "flash_notice", notice: notice if notice %>
         <%= render "flash_alert", alert: alert if alert %>
         <%= yield %>

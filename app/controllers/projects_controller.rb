@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
+
   # POST /trusts/:trust_id/projects
   def create
     @project = Project.new(project_params)
