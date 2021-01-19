@@ -4,16 +4,15 @@ module ApplicationHelper
   end
 
   def tab_link(name, selected: false)
-    classes = ["govuk-tabs__list-item"]
+    classes = %w[govuk-tabs__list-item]
     classes << "govuk-tabs__list-item--selected" if selected
 
-    link = link_to(t(".tab_headers.#{name}"), "##{name}", class: "govuk-tabs__tab", id: "tab_#{name}"
-    )
+    link = link_to t(".tab_headers.#{name}"), "##{name}", class: "govuk-tabs__tab", id: "tab_#{name}"
 
-    content_tag(:li, link, class: classes)
+    tag.li(link, class: classes)
   end
 
   def render_as_tab(name, *args)
-    content_tag :div, render(name.to_s *args), id: name, class: "govuk-tabs__panel"
+    tag.div(render(name.to_s(*args)), id: name, class: "govuk-tabs__panel")
   end
 end
