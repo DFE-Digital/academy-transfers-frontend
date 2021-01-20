@@ -1,9 +1,20 @@
 <% content_for(:page_header) { t(".page_header") } %>
 
+<%= render("error_summary", errors: [@search_error]) if @search_error %>
+
 <div class="govuk-width-container"><br>
   <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
 </div>
 
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <ul>
+      <% @incoming_trusts.each do |incoming_trust| %>
+        <li><%= incoming_trust.label %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -13,7 +24,15 @@
         <%= form.label :autocomplete_trusts, t(".search_label"), class: "govuk-hint" %>
         <div id="autocomplete_trusts"></div>
       </div>
-      <%= form.submit t(".search_button"), class: "govuk-button" %>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+          <%= form.submit t(".add_trust"), class: "govuk-button govuk-button--secondary" %>
+        </div>
+        <div class="govuk-grid-column-one-half align-right">
+          <%= form.submit t(".search_button"), class: "govuk-button" %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
