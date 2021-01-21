@@ -65,7 +65,7 @@ en:
       page_header: Transfer an academy to another trust
       heading: Add the incoming trust name
       search_label: Search by name, trust reference number or companies house number
-      search_button: Search and continue
+      search_button: Save and continue
       add_trust: Save and Add
     search:
       page_header: Transfer an academy to another trust

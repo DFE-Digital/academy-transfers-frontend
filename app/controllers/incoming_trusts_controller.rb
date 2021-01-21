@@ -38,7 +38,7 @@ class IncomingTrustsController < ApplicationController
   def show
     @outgoing_trust = Trust.find(outgoing_trust_id)
     @academies = Academy.belonging_to_trust(@outgoing_trust.id).select { |academy| selected_academy_ids.include?(academy.id) }
-    @incoming_trust = Trust.find(params[:id])
+    incoming_trusts
   end
 
 private

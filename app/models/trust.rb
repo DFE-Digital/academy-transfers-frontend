@@ -13,6 +13,8 @@ class Trust
         response = Faraday.get(SEARCH_URL, search: content) do |req|
           req.headers["Authorization"] = "Bearer #{token}"
         end
+        raise "API call to /trusts to search for \"#{content}\" failed with: #{response.body}" unless response.success?
+
         response.body
       end
       payload = JSON.parse(payload)

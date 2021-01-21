@@ -4,7 +4,9 @@ module ModelCache
   extend RedisMethods
 
   def self.set(model)
-    redis.set key_for(model.id), model.to_json
+    redis_key = key_for(model.id)
+    redis.set redis_key, model.to_json
+    redis.expire(redis_key, EXPIRY)
   end
 
   def self.get(model_id)

@@ -112,14 +112,21 @@ RSpec.describe "IncomingTrusts", type: :request do
       let(:query) { Faker::Educator.secondary_school }
       let(:trusts) { build_list :trust, 2, trust_name: query }
       let(:incoming_trust) { trusts.first }
+      let(:link_back_to_search) do
+        search_trust_incoming_trusts_path(
+          outgoing_trust.id,
+          "input-autocomplete" => incoming_trust.trust_name,
+          commit: I18n.t("incoming_trusts.identified.add_trust"),
+        )
+      end
 
       it "Renders successfully" do
         expect(response).to be_successful
       end
 
-      it "displays link to incoming trust's show page" do
+      it "displays link back to search with trust name as input" do
         expect(response.body).to include(incoming_trust.trust_name)
-        expect(response.body).to include(trust_incoming_trust_path(outgoing_trust.id, incoming_trust.id))
+        expect(response.body).to include(CGI.escapeHTML(link_back_to_search))
       end
 
       it "renders search template" do
@@ -178,6 +185,7 @@ RSpec.describe "IncomingTrusts", type: :request do
       mock_trust_find(incoming_trust)
       mock_trust_find(outgoing_trust)
       session_store.set :academy_ids, [academy.id]
+      session_store.set :incoming_trust_ids, [incoming_trust.id]
       get trust_incoming_trust_path(outgoing_trust.id, incoming_trust.id)
     end
 
