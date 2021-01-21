@@ -67,6 +67,7 @@ en:
       search_label: Search by name, trust reference number or companies house number
       search_button: Save and continue
       add_trust: Save and Add
+      remove_trust: Remove
     search:
       page_header: Transfer an academy to another trust
       heading: Select incoming trust

@@ -35,6 +35,13 @@ class IncomingTrustsController < ApplicationController
     end
   end
 
+  def destroy
+    if incoming_trust_ids.delete(params[:id])
+      session_store.set :incoming_trust_ids, incoming_trust_ids
+    end
+    redirect_to(identified_trust_incoming_trusts_path(outgoing_trust_id))
+  end
+
   def show
     @outgoing_trust = Trust.find(outgoing_trust_id)
     @academies = Academy.belonging_to_trust(@outgoing_trust.id).select { |academy| selected_academy_ids.include?(academy.id) }
@@ -80,7 +87,7 @@ private
   end
 
   def search_error
-    @search_error = I18n.t("errors.trust.empty_search_error") if search_input.empty? && incoming_trust_ids.empty?
+    @search_error = I18n.t("errors.trust.empty_search_error") if search_input.blank? && incoming_trust_ids.empty?
   end
 
   def search_input

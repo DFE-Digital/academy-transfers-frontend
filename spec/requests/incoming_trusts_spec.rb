@@ -205,4 +205,29 @@ RSpec.describe "IncomingTrusts", type: :request do
       expect(response.body).to include(academy.urn)
     end
   end
+
+  describe "DELETE /trusts/:trust_id/incoming/:id" do
+    subject { delete trust_incoming_trust_path(outgoing_trust.id, incoming_trust.id) }
+
+    it "Redirects to the search page" do
+      subject
+      expect(response).to redirect_to(identified_trust_incoming_trusts_path(outgoing_trust.id))
+    end
+
+    context "incoming trust is present in session store" do
+      before do
+        session_store.set :incoming_trust_ids, [incoming_trust.id]
+      end
+
+      it "Removed the incoming trust id from session store" do
+        subject
+        expect(session_store.get(:incoming_trust_ids)).not_to include(incoming_trust.id)
+      end
+
+      it "Redirects to the search page" do
+        subject
+        expect(response).to redirect_to(identified_trust_incoming_trusts_path(outgoing_trust.id))
+      end
+    end
+  end
 end
