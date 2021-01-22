@@ -10,4 +10,6 @@ Rails.start();
 Turbolinks.start();
 initAll();
 
-autocompleteSelection('#autocomplete_trusts', '/trusts/search.json');
+document.addEventListener('turbolinks:load', () => {
+  autocompleteSelection('#autocomplete_trusts', '/trusts/search.json');
+});

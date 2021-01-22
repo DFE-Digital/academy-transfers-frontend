@@ -46,28 +46,30 @@
 <div class="govuk-width-container">
   <h2 class="govuk-heading-m"><%= t(".incoming_trusts") %></h2>
 
-  <dl class="govuk-summary-list">
-    <% [
-         :trust_name,
-         :companies_house_number,
-         :trust_reference_number,
-         :establishment_type
-       ].each do |attribute| %>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key"><%= t(".#{attribute}") %></dt>
-        <dd class="govuk-summary-list__value"><%= @incoming_trust.send(attribute) %></dd>
-      </div>
-    <% end %>
+  <% @incoming_trusts.each do |incoming_trust| %>
+    <dl class="govuk-summary-list">
+      <% [
+           :trust_name,
+           :companies_house_number,
+           :trust_reference_number,
+           :establishment_type
+         ].each do |attribute| %>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key"><%= t(".#{attribute}") %></dt>
+          <dd class="govuk-summary-list__value"><%= incoming_trust.send(attribute) %></dd>
+        </div>
+      <% end %>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key"><%= t(".address") %></dt>
-      <dd class="govuk-summary-list__value">
-        <% @incoming_trust.address.split(/[\n\r$\,]+/).each do |address_line| %>
-          <p class="govuk-body"><%= address_line %></p>
-        <% end %>
-      </dd>
-    </div>
-  </dl>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key"><%= t(".address") %></dt>
+        <dd class="govuk-summary-list__value">
+          <% incoming_trust.address.split(/[\n\r$\,]+/).each do |address_line| %>
+            <p class="govuk-body"><%= address_line %></p>
+          <% end %>
+        </dd>
+      </div>
+    </dl>
+  <% end %>
 </div>
 
 <div class="govuk-width-container">

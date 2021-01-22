@@ -65,7 +65,9 @@ en:
       page_header: Transfer an academy to another trust
       heading: Add the incoming trust name
       search_label: Search by name, trust reference number or companies house number
-      search_button: Search and continue
+      search_button: Save and continue
+      add_trust: Save and Add
+      remove_trust: Remove
     search:
       page_header: Transfer an academy to another trust
       heading: Select incoming trust
@@ -99,6 +101,7 @@ en:
     summary: There is a problem
     trust:
       no_academy_selected: An academy must be selected
+      empty_search_error: Please entry the name of a trust
     must_select_yes_or_no: Yes or No must be selected
 
   generic:

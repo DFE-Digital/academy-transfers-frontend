@@ -1,9 +1,23 @@
 <% content_for(:page_header) { t(".page_header") } %>
 
+<%= render("error_summary", errors: [@search_error]) if @search_error %>
+
 <div class="govuk-width-container"><br>
   <h1 class="govuk-heading-xl"><%= t(".heading") %></h1>
 </div>
 
+<table class="govuk-table">
+  <tbody class="govuk-table__body">
+    <% @incoming_trusts.each do |incoming_trust| %>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header"><%= incoming_trust.label %></th>
+        <td class="govuk-table__cell">
+          <%= link_to t(".remove_trust"), trust_incoming_trust_path(params[:trust_id], incoming_trust.id), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -13,7 +27,15 @@
         <%= form.label :autocomplete_trusts, t(".search_label"), class: "govuk-hint" %>
         <div id="autocomplete_trusts"></div>
       </div>
-      <%= form.submit t(".search_button"), class: "govuk-button" %>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+          <%= form.submit t(".add_trust"), class: "govuk-button govuk-button--secondary" %>
+        </div>
+        <div class="govuk-grid-column-one-half align-right">
+          <%= form.submit t(".search_button"), class: "govuk-button" %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

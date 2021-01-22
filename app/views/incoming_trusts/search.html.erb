@@ -8,7 +8,18 @@
   <div class="govuk-grid-column-two-thirds">
     <ul>
     <% @trusts.each do |trust| %>
-      <li><%= link_to trust.trust_name, trust_incoming_trust_path(params[:trust_id], trust.id) %></li>
+      <li>
+        <%=
+            link_to(
+                trust.trust_name,
+                search_trust_incoming_trusts_path(
+                  params[:trust_id],
+                  "input-autocomplete" => trust.trust_name,
+                  commit: t("incoming_trusts.identified.add_trust")
+                )
+             )
+        %>
+      </li>
     <% end %>
   </div>
 </div>
