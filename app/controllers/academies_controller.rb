@@ -4,6 +4,7 @@ class AcademiesController < ApplicationController
   # GET /academies
   def index
     academies
+    academy_ids
   end
 
   # POST /academies
@@ -14,6 +15,7 @@ class AcademiesController < ApplicationController
     else
       @error = I18n.t("errors.trust.no_academy_selected")
       academies
+      academy_ids
       render :index
     end
   end
@@ -30,5 +32,9 @@ private
 
   def academy_data
     @academy_data ||= params.dig(:trust, :academy_ids).select(&:present?)
+  end
+
+  def academy_ids
+    @academy_ids ||= session_store.get(:academy_ids) || []
   end
 end

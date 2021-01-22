@@ -32,6 +32,28 @@
 en:
   default_page_header: Academy Transfers
 
+  models:
+    trust: &trust_attributes
+      trust_name: Name
+      companies_house_number: Companies House Number
+      establishment_type: Type
+      trust_reference_number: Trust Reference Number
+      address: Address
+    academy: &academy_attributes
+      academy_name: Name
+      urn: URN
+      address: Address
+      establishment_type: School type
+      local_authority_number: Local Authority Number
+      local_authority_name: Local Authority
+      religious_character: Faith School
+      diocese_name: Diocese Name
+      religious_ethos: Religious Ethos
+      ofsted_rating: Ofsted Rating
+      ofsted_inspection_date: Last inspection
+      ofsted_inspection_date_formatted: Last inspection
+      pfi: PFI (private finance initiative)
+
   academies:
     index:
       page_header: Transfer an academy to another trust
@@ -78,6 +100,8 @@ en:
       academy_details: Academy details
       incoming_trusts: Incoming trusts
       next_action_link: Save and continue
+      <<: *trust_attributes
+      <<: *academy_attributes
   trusts:
     index:
       page_header: Transfer an academy to another trust
@@ -90,11 +114,7 @@ en:
     show:
       page_header: Transfer an academy to another trust
       heading: Outgoing trust details
-      trust_name: Name
-      companies_house_number: Companies House Number
-      establishment_type: Type
-      trust_reference_number: Trust Reference Number
-      address: Address
+      <<: *trust_attributes
       next_action_link: Select Trust
 
   errors:
@@ -108,4 +128,5 @@ en:
     yes: Yes
     no: No
     back: Back
+    change: Change
       

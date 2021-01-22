@@ -16,7 +16,8 @@
       <div class="govuk-checkboxes">
         <%= collection_check_boxes(:trust, :academy_ids, @academies, :id, :academy_name_with_urn) do |element| %>
           <div class="govuk-checkboxes__item">
-            <%= element.check_box(class: "govuk-checkboxes__input") %>
+            <% checked = @academy_ids.include?(element.object.id) %>
+            <%= element.check_box(class: "govuk-checkboxes__input", checked: checked) %>
             <%= element.label(class: "govuk-label govuk-checkboxes__label") %>
           </div>
         <% end %>
