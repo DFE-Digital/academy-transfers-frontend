@@ -38,7 +38,7 @@ module GovukRailsBoilerplate
     Rails.configuration.x.api.client_scope = ENV.fetch("API_CLIENT_SCOPE", api_credentials[:client_scope])
     Rails.configuration.x.api.client_id = ENV.fetch("API_CLIENT_ID", api_credentials[:client_id])
     Rails.configuration.x.api.client_secret = ENV.fetch("API_CLIENT_SECRET", api_credentials[:client_secret])
-    Rails.configuration.x.api.root_url = ENV.fetch("API_ROOT_URL", "https://academy-transfers-prototype-api.london.cloudapps.digital")
+    Rails.configuration.x.api.root_url = ENV.fetch("API_ROOT_URL", "https://academy-transfers-api.london.cloudapps.digital")
 
     # Authentication credentials
     default_user_credentials = Rails.application.credentials.default_user || {}
