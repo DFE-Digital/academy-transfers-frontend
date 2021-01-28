@@ -7,11 +7,8 @@ class Academy
 
   class << self
     def belonging_to_trust(trust_id)
-      token = BearerToken.token
       url = File.join(Trust::SEARCH_URL, trust_id, "academies")
-      response = Faraday.get(url) do |req|
-        req.headers["Authorization"] = "Bearer #{token}"
-      end
+      response = Api.get(url)
       payload = JSON.parse(response.body)
       payload.map { |input| new(input) }
     end

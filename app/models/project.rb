@@ -26,10 +26,7 @@ class Project
                 :rdd_or_rsc_intervention_reasons_explained, :academy_ids, :outgoing_trust_id, :incoming_trust_id
 
   def save
-    token = BearerToken.token
-    Faraday.post(SAVE_URL, api_payload.to_json, "Content-Type" => "application/json") do |req|
-      req.headers["Authorization"] = "Bearer #{token}"
-    end
+    Api.post(SAVE_URL, api_payload)
   end
 
   def api_payload
