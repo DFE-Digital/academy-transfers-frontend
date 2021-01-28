@@ -21,7 +21,7 @@ private
       project_status: Project::STATUS[:in_progress],
       academy_ids: session_store.get(:academy_ids),
       outgoing_trust_id: params[:trust_id],
-      incoming_trust_id: session_store.get(:incoming_trusts).first,
+      incoming_trust_id: session_store.get(:incoming_trust_ids).first,
     }
   end
 

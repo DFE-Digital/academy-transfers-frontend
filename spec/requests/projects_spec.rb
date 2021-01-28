@@ -24,7 +24,7 @@ RSpec.describe "/projects", type: :request do
     before do
       sign_in user
       session_store.set(:academy_ids, [academy.id])
-      session_store.set(:incoming_trusts, [incoming_trust.id])
+      session_store.set(:incoming_trust_ids, [incoming_trust.id])
       mock_project_save(project, response_body)
     end
     subject { post trust_projects_path(outgoing_trust.id) }
