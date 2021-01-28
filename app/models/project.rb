@@ -1,7 +1,7 @@
 class Project
   include ActiveModel::Model
 
-  SAVE_URL = File.join(Rails.configuration.x.api.root_url, "projects").freeze
+  PROJECTS_URL = File.join(Rails.configuration.x.api.root_url, "projects").freeze
 
   STATUS = {
     in_progress: 1,
@@ -25,8 +25,30 @@ class Project
                 :esfa_intervention_reasons, :esfa_intervention_reasons_explained, :rdd_or_rsc_intervention_reasons,
                 :rdd_or_rsc_intervention_reasons_explained, :academy_ids, :outgoing_trust_id, :incoming_trust_id
 
+  class << self
+    def completed(args = {})
+      search(args.merge(status: STATUS[:completed]))
+    end
+
+    def in_progress(args = {})
+      search(args.merge(status: STATUS[:in_progress]))
+    end
+
+    def search(args = {})
+      query = args.transform_keys { |key| key.to_s.camelize(:lower) }
+      response = Api.get(PROJECTS_URL, query)
+      data = JSON.parse(response.body)
+      data["projects"].map { |project_data| new(project_data) }
+    end
+  end
+
+  def initialize(attributes = {})
+    attributes.transform_keys! { |key| key.to_s.underscore }
+    super
+  end
+
   def save
-    Api.post(SAVE_URL, api_payload)
+    Api.post(PROJECTS_URL, api_payload)
   end
 
   def api_payload
@@ -54,5 +76,9 @@ class Project
         ],
       }
     end
+  end
+
+  def status_key
+    STATUS.invert[project_status]
   end
 end

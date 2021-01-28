@@ -53,6 +53,9 @@ en:
       ofsted_inspection_date: Last inspection
       ofsted_inspection_date_formatted: Last inspection
       pfi: PFI (private finance initiative)
+    project:
+      in_progress: In progress
+      completed: Completed
 
   academies:
     index:
@@ -72,6 +75,8 @@ en:
     transfers:
       new_academy_transfer: Set up a new academy transfer project
       new_academy_transfer_button: Start a new project
+      in_progress_projects_heading: Ongoing academy transfer projects
+      completed_projects_heading: Archieved academy transfer projects
     conversions:
       sub_heading: Conversions
     significant_change:
@@ -129,4 +134,5 @@ en:
     no: No
     back: Back
     change: Change
+    status: Status
       
