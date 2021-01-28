@@ -1,10 +1,10 @@
 ---
 applications:
-- name: academy-transfers-prototype-frontend
+- name: academy-transfers-frontend
   memory: 256M
   buildpacks:
     - https://github.com/cloudfoundry/ruby-buildpack.git
     - https://github.com/cloudfoundry/nodejs-buildpack
   services:
-    - academy-transfers-prototype-frontend-db
-    - academy-transfers-prototype-frontend-redis
+    - academy-transfers-frontend-db
+    - academy-transfers-frontend-redis
