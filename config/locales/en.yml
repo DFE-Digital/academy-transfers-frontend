@@ -99,7 +99,8 @@ en:
     search:
       page_header: Transfer an academy to another trust
       heading: Select incoming trust
-    show:
+  projects:
+    new:
       page_header: Transfer an academy to another trust
       heading: Check trust and academy details
       outgoing_trust: Outgoing trust

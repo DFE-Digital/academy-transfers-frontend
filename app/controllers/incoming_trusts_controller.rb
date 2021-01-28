@@ -19,7 +19,7 @@ class IncomingTrustsController < ApplicationController
       incoming_trusts
       render :index
     else
-      redirect_to trust_incoming_trust_path(outgoing_trust_id, incoming_trust_ids.first)
+      redirect_to new_trust_project_path(outgoing_trust_id)
     end
   end
 
@@ -30,20 +30,10 @@ class IncomingTrustsController < ApplicationController
     redirect_to(trust_incoming_trusts_path(outgoing_trust_id))
   end
 
-  def show
-    @outgoing_trust = Trust.find(outgoing_trust_id)
-    @academies = Academy.belonging_to_trust(@outgoing_trust.id).select { |academy| selected_academy_ids.include?(academy.id) }
-    incoming_trusts
-  end
-
 private
 
   def session_store
     @session_store ||= SessionStore.new(current_user, params[:trust_id])
-  end
-
-  def selected_academy_ids
-    session_store.get(:academy_ids)
   end
 
   def outgoing_trust_id
@@ -62,12 +52,12 @@ private
     @incoming_trust_ids ||= session_store.get(:incoming_trust_ids) || []
   end
 
-  def identified_scope
-    "incoming_trusts.identified"
+  def index_scope
+    "incoming_trusts.index"
   end
 
   def add_trust_selected?
-    params[:commit] == I18n.t(:add_trust, scope: identified_scope)
+    params[:commit] == I18n.t(:add_trust, scope: index_scope)
   end
 
   def empty_search?
