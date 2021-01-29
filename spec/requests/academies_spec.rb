@@ -40,7 +40,7 @@ RSpec.describe "Academies", type: :request do
 
     it "redirects to next page" do
       subject
-      expect(response).to redirect_to(trust_incoming_trusts_path(trust.id))
+      expect(response).to redirect_to(trust_identify_path(trust.id))
     end
 
     context "with noting selected" do

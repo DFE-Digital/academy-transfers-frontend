@@ -78,12 +78,13 @@ en:
       sub_heading: Significant Change
     concerns:
       sub_heading: Concerns
-  incoming_trusts:
-    index:
+  identify:
+    show:
       page_header: Transfer an academy to another trust
       heading: Has an incoming trust been identified?
       submit: Continue
-    identified:
+  incoming_trusts:
+    index:
       page_header: Transfer an academy to another trust
       heading: Add the incoming trust name
       search_label: Search by name, trust reference number or companies house number

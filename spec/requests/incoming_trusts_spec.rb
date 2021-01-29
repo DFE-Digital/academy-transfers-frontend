@@ -4,66 +4,13 @@ RSpec.describe "IncomingTrusts", type: :request do
   let(:trust) { build :trust }
   let(:outgoing_trust) { trust }
   let(:incoming_trust) { build :trust }
-  let(:session_store) { SessionStore.new(user, trust.id) }
   let(:user) { create :user }
+  let(:session_store) { SessionStore.new(user, trust.id) }
 
   before { sign_in user }
 
   describe "GET /trust/:trust_id/incoming" do
-    it "returns http success" do
-      get trust_incoming_trusts_path(trust.id)
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "POST /trust/:trust_id/incoming" do
-    let(:trust_identified) { "yes" }
-    let(:params) do
-      { trust_identified: trust_identified }
-    end
-    subject { post trust_incoming_trusts_path(trust.id), params: params }
-
-    it "redirects to identified" do
-      subject
-      expect(response).to redirect_to(identified_trust_incoming_trusts_path(trust.id))
-    end
-
-    it "records choice in session_store" do
-      subject
-      expect(session_store.get(:incoming_trust_identified)).to eq(trust_identified)
-    end
-
-    context "when no trust identified" do
-      let(:trust_identified) { "no" }
-
-      it "redirects to identified" do
-        subject
-        expect(response).to redirect_to(identified_trust_incoming_trusts_path(trust.id))
-      end
-
-      it "records choice in session_store" do
-        subject
-        expect(session_store.get(:incoming_trust_identified)).to eq(trust_identified)
-      end
-    end
-
-    context "when nothing selected" do
-      let(:trust_identified) { nil }
-
-      it "successfully renders page" do
-        subject
-        expect(response).to have_http_status(:success)
-      end
-
-      it "displays error" do
-        subject
-        expect(response.body).to include(I18n.t("errors.must_select_yes_or_no"))
-      end
-    end
-  end
-
-  describe "GET /trust/:trust_id/incoming/identified" do
-    subject { get identified_trust_incoming_trusts_path(trust.id) }
+    subject { get trust_incoming_trusts_path(trust.id) }
 
     it "returns http success" do
       subject
@@ -116,7 +63,7 @@ RSpec.describe "IncomingTrusts", type: :request do
         search_trust_incoming_trusts_path(
           outgoing_trust.id,
           "input-autocomplete" => incoming_trust.trust_name,
-          commit: I18n.t("incoming_trusts.identified.add_trust"),
+          commit: I18n.t("incoming_trusts.index.add_trust"),
         )
       end
 
@@ -145,8 +92,8 @@ RSpec.describe "IncomingTrusts", type: :request do
         expect(session_store.get(:incoming_trust_ids)).to eq([incoming_trust.id])
       end
 
-      it "renders identified template" do
-        expect(response.body).to include(I18n.t("incoming_trusts.identified.heading"))
+      it "renders index template" do
+        expect(response.body).to include(I18n.t("incoming_trusts.index.heading"))
       end
     end
 
@@ -161,8 +108,8 @@ RSpec.describe "IncomingTrusts", type: :request do
         expect(response.body).to include(I18n.t("errors.trust.empty_search_error"))
       end
 
-      it "renders identified template" do
-        expect(response.body).to include(I18n.t("incoming_trusts.identified.heading"))
+      it "renders index template" do
+        expect(response.body).to include(I18n.t("incoming_trusts.index.heading"))
       end
     end
 
@@ -211,7 +158,7 @@ RSpec.describe "IncomingTrusts", type: :request do
 
     it "Redirects to the search page" do
       subject
-      expect(response).to redirect_to(identified_trust_incoming_trusts_path(outgoing_trust.id))
+      expect(response).to redirect_to(trust_incoming_trusts_path(outgoing_trust.id))
     end
 
     context "incoming trust is present in session store" do
@@ -226,7 +173,7 @@ RSpec.describe "IncomingTrusts", type: :request do
 
       it "Redirects to the search page" do
         subject
-        expect(response).to redirect_to(identified_trust_incoming_trusts_path(outgoing_trust.id))
+        expect(response).to redirect_to(trust_incoming_trusts_path(outgoing_trust.id))
       end
     end
   end

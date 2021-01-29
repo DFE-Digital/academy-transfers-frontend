@@ -1,19 +1,7 @@
 class IncomingTrustsController < ApplicationController
   before_action :authenticate_user!
 
-  def index; end
-
-  def create
-    if trust_identified
-      session_store.set :incoming_trust_identified, trust_identified
-      redirect_to identified_trust_incoming_trusts_path(outgoing_trust_id)
-    else
-      @error = I18n.t("errors.must_select_yes_or_no")
-      render :index
-    end
-  end
-
-  def identified
+  def index
     incoming_trusts
   end
 
@@ -29,7 +17,7 @@ class IncomingTrustsController < ApplicationController
 
     if search_error || add_trust_selected?
       incoming_trusts
-      render :identified
+      render :index
     else
       redirect_to trust_incoming_trust_path(outgoing_trust_id, incoming_trust_ids.first)
     end
@@ -39,7 +27,7 @@ class IncomingTrustsController < ApplicationController
     if incoming_trust_ids.delete(params[:id])
       session_store.set :incoming_trust_ids, incoming_trust_ids
     end
-    redirect_to(identified_trust_incoming_trusts_path(outgoing_trust_id))
+    redirect_to(trust_incoming_trusts_path(outgoing_trust_id))
   end
 
   def show
