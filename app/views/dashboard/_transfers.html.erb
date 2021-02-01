@@ -4,3 +4,53 @@
     <p><%= link_to t(".new_academy_transfer_button"), trusts_url, class: "govuk-button", data: { turbolinks: false } %>
   </div>
 </div>
+
+<section id="in-progress-projects" class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><%= t(".in_progress_projects_heading") %></th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"><%= t("generic.status") %></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @in_progress_projects.each do |in_progress_project| %>
+          <tr class="govuk-table__row">
+            <td>
+              <%= in_progress_project.project_name %>
+            </td>
+            <td class="govuk-tag govuk-tag--blue">
+              <%= t("models.project.#{in_progress_project.status_key}") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="completed-projects" class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><%= t(".completed_projects_heading") %></th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"><%= t("generic.status") %></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <% @completed_projects.each do |in_progress_project| %>
+          <tr class="govuk-table__row">
+            <td>
+              <%= in_progress_project.project_name %>
+            </td>
+            <td class="govuk-tag govuk-tag--green">
+              <%= t("models.project.#{in_progress_project.status_key}") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

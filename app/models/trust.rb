@@ -8,11 +8,8 @@ class Trust
 
   class << self
     def search(content)
-      token = BearerToken.token
       payload = BlockCache.with(content, namespace: :trusts) do
-        response = Faraday.get(SEARCH_URL, search: content) do |req|
-          req.headers["Authorization"] = "Bearer #{token}"
-        end
+        response = Api.get(SEARCH_URL, search: content)
         raise "API call to /trusts to search for \"#{content}\" failed with: #{response.body}" unless response.success?
 
         response.body
@@ -27,11 +24,8 @@ class Trust
 
     def find(id)
       payload = ModelCache.get(id) || begin
-        token = BearerToken.token
         url = File.join(SEARCH_URL, id)
-        response = Faraday.get(url) do |req|
-          req.headers["Authorization"] = "Bearer #{token}"
-        end
+        response = Api.get(url)
         JSON.parse(response.body)
       end
 

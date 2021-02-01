@@ -17,6 +17,60 @@ RSpec.describe Project, type: :model do
     )
   end
 
+  describe ".search" do
+    let(:query) { {} }
+    let(:projects) { build_list :project, 10 }
+    subject { described_class.search(query) }
+
+    before do
+      mock_project_search(projects, query)
+    end
+
+    it "returns an array of projects" do
+      expect(subject.length).to eq(projects.length)
+      expect(subject.first.as_json).to eq(projects.first.as_json)
+    end
+
+    context "with a search term" do
+      let(:query) { { search_term: "foo" } }
+
+      it "returns an array of projects" do
+        expect(subject.length).to eq(projects.length)
+        expect(subject.first.as_json).to eq(projects.first.as_json)
+      end
+    end
+  end
+
+  describe ".completed" do
+    let(:query) { { status: 2 } }
+    let(:projects) { build_list :project, 10 }
+    subject { described_class.completed }
+
+    before do
+      mock_project_search(projects, query)
+    end
+
+    it "returns an array of projects" do
+      expect(subject.length).to eq(projects.length)
+      expect(subject.first.as_json).to eq(projects.first.as_json)
+    end
+  end
+
+  describe ".in_progress" do
+    let(:query) { { status: 1 } }
+    let(:projects) { build_list :project, 10 }
+    subject { described_class.in_progress }
+
+    before do
+      mock_project_search(projects, query)
+    end
+
+    it "returns an array of projects" do
+      expect(subject.length).to eq(projects.length)
+      expect(subject.first.as_json).to eq(projects.first.as_json)
+    end
+  end
+
   describe "#save" do
     let(:response) { project.save }
     let(:response_body) { { foo: :bar }.to_json }
@@ -60,6 +114,23 @@ RSpec.describe Project, type: :model do
 
     it "contain outgoing trust id" do
       expect(project_academy.dig(:trusts, 0, :trust_id)).to eq(outgoing_trust.id)
+    end
+  end
+
+  describe "#status_key" do
+    let(:status) { 1 }
+    let(:project) { build :project, project_status: status }
+
+    it "returns the matching key from STATUS" do
+      expect(project.status_key).to eq(:in_progress)
+    end
+
+    context "when complete" do
+      let(:status) { 2 }
+
+      it "returns the matching key from STATUS" do
+        expect(project.status_key).to eq(:completed)
+      end
     end
   end
 end
