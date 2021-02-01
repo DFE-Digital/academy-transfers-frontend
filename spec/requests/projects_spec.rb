@@ -18,11 +18,12 @@ RSpec.describe "/projects", type: :request do
   end
   let(:session_store) { SessionStore.new(user, outgoing_trust.id) }
 
+  before { sign_in user }
+
   describe "POST /trusts/:trust_id/projects" do
     let(:response_body) { { foo: :bar }.to_json }
 
     before do
-      sign_in user
       session_store.set(:academy_ids, [academy.id])
       session_store.set(:incoming_trust_ids, [incoming_trust.id])
       mock_project_save(project, response_body)
@@ -32,6 +33,35 @@ RSpec.describe "/projects", type: :request do
     it "renders successfully" do
       subject
       expect(response.status).to eq(200)
+    end
+  end
+
+  describe "GET /trusts/:trust_id/projects/new" do
+    let(:academy) { build :academy }
+
+    before do
+      mock_academies_belonging_to_trust(outgoing_trust, [academy])
+      mock_trust_find(incoming_trust)
+      mock_trust_find(outgoing_trust)
+      session_store.set :academy_ids, [academy.id]
+      session_store.set :incoming_trust_ids, [incoming_trust.id]
+      get new_trust_project_path(outgoing_trust.id, incoming_trust.id)
+    end
+
+    it "renders a successful response" do
+      expect(response).to be_successful
+    end
+
+    it "displays outgoing trust information" do
+      expect(response.body).to include(outgoing_trust.trust_reference_number)
+    end
+
+    it "displays incoming trust information" do
+      expect(response.body).to include(incoming_trust.trust_reference_number)
+    end
+
+    it "displays academy information" do
+      expect(response.body).to include(academy.urn)
     end
   end
 end

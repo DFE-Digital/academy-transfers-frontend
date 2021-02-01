@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     get :search, on: :collection
     resources :academies, only: %i[index create]
     resource :identify, only: %i[show create], controller: :identify
-    resources :incoming_trusts, only: %i[index show create destroy], path: :incoming do
+    resources :incoming_trusts, only: %i[index create destroy], path: :incoming do
       get :search, on: :collection
     end
-    resources :projects, only: %i[create]
+    resources :projects, only: %i[new create]
   end
 
   get "/pages/:page", to: "pages#show"

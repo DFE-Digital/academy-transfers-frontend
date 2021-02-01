@@ -40,7 +40,7 @@ RSpec.describe "IncomingTrusts", type: :request do
     let(:params) do
       {
         "input-autocomplete" => query,
-        "commit" => I18n.t("incoming_trusts.identified.#{submit_button}"),
+        "commit" => I18n.t("incoming_trusts.index.#{submit_button}"),
       }
     end
 
@@ -51,8 +51,8 @@ RSpec.describe "IncomingTrusts", type: :request do
       get search_trust_incoming_trusts_url(outgoing_trust.id), params: params
     end
 
-    it "Redirects to show for single result" do
-      expect(response).to redirect_to(trust_incoming_trust_path(outgoing_trust.id, incoming_trust.id))
+    it "Redirects to new projects for single result" do
+      expect(response).to redirect_to(new_trust_project_path(outgoing_trust.id))
     end
 
     context "when multiple results" do
@@ -118,38 +118,9 @@ RSpec.describe "IncomingTrusts", type: :request do
       let(:trusts) { [] }
       let(:previously_saved) { [incoming_trust.id] }
 
-      it "Redirects to show for single result" do
-        expect(response).to redirect_to(trust_incoming_trust_path(outgoing_trust.id, incoming_trust.id))
+      it "Redirects to new project for single result" do
+        expect(response).to redirect_to(new_trust_project_path(outgoing_trust.id))
       end
-    end
-  end
-
-  describe "GET /trusts/:trust_id/incoming/:id" do
-    let(:academy) { build :academy }
-
-    before do
-      mock_academies_belonging_to_trust(outgoing_trust, [academy])
-      mock_trust_find(incoming_trust)
-      mock_trust_find(outgoing_trust)
-      session_store.set :academy_ids, [academy.id]
-      session_store.set :incoming_trust_ids, [incoming_trust.id]
-      get trust_incoming_trust_path(outgoing_trust.id, incoming_trust.id)
-    end
-
-    it "renders a successful response" do
-      expect(response).to be_successful
-    end
-
-    it "displays outgoing trust information" do
-      expect(response.body).to include(outgoing_trust.trust_reference_number)
-    end
-
-    it "displays incoming trust information" do
-      expect(response.body).to include(incoming_trust.trust_reference_number)
-    end
-
-    it "displays academy information" do
-      expect(response.body).to include(academy.urn)
     end
   end
 
