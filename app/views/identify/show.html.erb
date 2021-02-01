@@ -1,0 +1,33 @@
+<% content_for(:page_header) { t(".page_header") } %>
+
+<%= render("error_summary", errors: [@error]) if @error %>
+
+<%= form_with(url: trust_identify_path(params[:trust_id]), local: true) do |form| %>
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+          <%= t(".heading") %>
+        </h1>
+      </legend>
+      <div class="govuk-radios govuk-radios--inline">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="trust-identified" name="trust_identified" type="radio" value="yes">
+          <label class="govuk-label govuk-radios__label" for="trust-identified">
+            <%= t(".generic.yes") %>
+          </label>
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="trust-identified-2" name="trust_identified" type="radio" value="no">
+          <label class="govuk-label govuk-radios__label" for="trust-identified-2">
+            <%= t(".generic.no") %>
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="govuk-!-margin-top-4">
+      <%= form.submit t(".submit"), class: "govuk-button" %>
+    </div>
+  </div>
+<% end %>

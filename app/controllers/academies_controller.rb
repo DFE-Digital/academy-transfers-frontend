@@ -11,7 +11,7 @@ class AcademiesController < ApplicationController
   def create
     if academy_data.present?
       session_store.set :academy_ids, academy_data
-      redirect_to trust_incoming_trusts_path(params[:trust_id])
+      redirect_to trust_identify_path(params[:trust_id])
     else
       @error = I18n.t("errors.trust.no_academy_selected")
       academies

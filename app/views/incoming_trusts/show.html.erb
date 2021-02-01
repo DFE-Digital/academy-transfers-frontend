@@ -38,7 +38,7 @@
 
   <% @incoming_trusts.each do |incoming_trust| %>
     <dl class="govuk-summary-list">
-      <%= summary_row(incoming_trust, :trust_name, change_url: identified_trust_incoming_trusts_path(@outgoing_trust.id)) %>
+      <%= summary_row(incoming_trust, :trust_name, change_url: trust_incoming_trusts_path(@outgoing_trust.id)) %>
       <% [
            :companies_house_number,
            :trust_reference_number,
