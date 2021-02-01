@@ -10,18 +10,18 @@ RSpec.describe "Academies", type: :request do
 
   before { sign_in user }
 
-  describe "GET /trust/:trust_id/academies" do
+  describe "GET /outgoing_trust/:outgoing_trust_id/academies" do
     before do
       mock_academies_belonging_to_trust(trust, academies)
     end
 
     it "renders a successful response" do
-      get trust_academies_path(trust.id)
+      get outgoing_trust_academies_path(trust.id)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /trust/:trust_id/academies" do
+  describe "POST /outgoing_trust/:outgoing_trust_id/academies" do
     let(:params) do
       {
         trust: {
@@ -31,7 +31,7 @@ RSpec.describe "Academies", type: :request do
     end
 
     subject do
-      post trust_academies_path(trust.id), params: params
+      post outgoing_trust_academies_path(trust.id), params: params
     end
 
     it "stores the academy ids in session store" do
@@ -40,7 +40,7 @@ RSpec.describe "Academies", type: :request do
 
     it "redirects to next page" do
       subject
-      expect(response).to redirect_to(trust_identify_path(trust.id))
+      expect(response).to redirect_to(outgoing_trust_identify_path(trust.id))
     end
 
     context "with noting selected" do

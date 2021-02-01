@@ -99,6 +99,20 @@ en:
     search:
       page_header: Transfer an academy to another trust
       heading: Select incoming trust
+  outgoing_trusts:
+    new:
+      page_header: Transfer an academy to another trust
+      heading: Add the outgoing trust name
+      search_label: Search by name, trust reference number or companies house number
+      search_button: Search
+    index:
+      page_header: Transfer an academy to another trust
+      heading: Select Trust
+    show:
+      page_header: Transfer an academy to another trust
+      heading: Outgoing trust details
+      <<: *trust_attributes
+      next_action_link: Select Trust
   projects:
     new:
       page_header: Transfer an academy to another trust
@@ -109,20 +123,6 @@ en:
       next_action_link: Save and continue
       <<: *trust_attributes
       <<: *academy_attributes
-  trusts:
-    index:
-      page_header: Transfer an academy to another trust
-      heading: Add the outgoing trust name
-      search_label: Search by name, trust reference number or companies house number
-      search_button: Search
-    search:
-      page_header: Transfer an academy to another trust
-      heading: Select Trust
-    show:
-      page_header: Transfer an academy to another trust
-      heading: Outgoing trust details
-      <<: *trust_attributes
-      next_action_link: Select Trust
 
   errors:
     summary: There is a problem

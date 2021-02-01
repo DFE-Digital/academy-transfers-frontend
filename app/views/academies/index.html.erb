@@ -2,7 +2,7 @@
 
 <%= render("error_summary", errors: [@error]) if @error %>
 
-<%= form_with(url: trust_academies_path(params[:trust_id]), local: true) do |form| %>
+<%= form_with(url: outgoing_trust_academies_path(params[:outgoing_trust_id]), local: true) do |form| %>
   <div class="govuk-form-group">
     <fieldset class="govuk-fieldset" aria-describedby="academy-hint">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">

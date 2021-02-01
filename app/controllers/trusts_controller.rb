@@ -1,27 +1,8 @@
 class TrustsController < ApplicationController
   before_action :authenticate_user!
 
-  breadcrumb :dashboard, :root_path
-  breadcrumb :add_new_project, :trusts_path
-
-  # GET /trusts
-  def index; end
-
-  # GET /trusts/search
-  def search
+  def index
     @trusts = Trust.search(params["input-autocomplete"])
-
-    respond_to do |format|
-      format.html do
-        redirect_to trust_path(@trusts.first.id) if @trusts.one?
-      end
-      format.json { render json: @trusts.map(&:trust_name) }
-    end
-  end
-
-  # GET /trusts/1
-  def show
-    @trust = Trust.find(params[:id])
-    breadcrumb :trust_details, trust_path(@trust.id)
+    render json: @trusts.map(&:trust_name)
   end
 end

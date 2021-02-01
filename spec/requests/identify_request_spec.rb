@@ -7,23 +7,23 @@ RSpec.describe "Identify", type: :request do
 
   before { sign_in user }
 
-  describe "GET /trust/:trust_id/identify" do
+  describe "GET /outgoing_trust/:outgoing_trust_id/identify" do
     it "returns http success" do
-      get trust_identify_path(trust.id)
+      get outgoing_trust_identify_path(trust.id)
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "POST /trust/:trust_id/identify" do
+  describe "POST /outgoing_trust/:outgoing_trust_id/identify" do
     let(:trust_identified) { "yes" }
     let(:params) do
       { trust_identified: trust_identified }
     end
-    subject { post trust_identify_path(trust.id), params: params }
+    subject { post outgoing_trust_identify_path(trust.id), params: params }
 
     it "redirects to incoming trusts" do
       subject
-      expect(response).to redirect_to(trust_incoming_trusts_path(trust.id))
+      expect(response).to redirect_to(outgoing_trust_incoming_trusts_path(trust.id))
     end
 
     it "records choice in session_store" do
@@ -36,7 +36,7 @@ RSpec.describe "Identify", type: :request do
 
       it "redirects to identified" do
         subject
-        expect(response).to redirect_to(trust_incoming_trusts_path(trust.id))
+        expect(response).to redirect_to(outgoing_trust_incoming_trusts_path(trust.id))
       end
 
       it "records choice in session_store" do

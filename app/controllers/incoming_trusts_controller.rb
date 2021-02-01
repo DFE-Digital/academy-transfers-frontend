@@ -19,7 +19,7 @@ class IncomingTrustsController < ApplicationController
       incoming_trusts
       render :index
     else
-      redirect_to new_trust_project_path(outgoing_trust_id)
+      redirect_to new_outgoing_trust_project_path(outgoing_trust_id)
     end
   end
 
@@ -27,17 +27,17 @@ class IncomingTrustsController < ApplicationController
     if incoming_trust_ids.delete(params[:id])
       session_store.set :incoming_trust_ids, incoming_trust_ids
     end
-    redirect_to(trust_incoming_trusts_path(outgoing_trust_id))
+    redirect_to(outgoing_trust_incoming_trusts_path(outgoing_trust_id))
   end
 
 private
 
   def session_store
-    @session_store ||= SessionStore.new(current_user, params[:trust_id])
+    @session_store ||= SessionStore.new(current_user, params[:outgoing_trust_id])
   end
 
   def outgoing_trust_id
-    @outgoing_trust_id = params[:trust_id]
+    @outgoing_trust_id = params[:outgoing_trust_id]
   end
 
   def trust_identified

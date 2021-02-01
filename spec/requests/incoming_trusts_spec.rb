@@ -9,8 +9,8 @@ RSpec.describe "IncomingTrusts", type: :request do
 
   before { sign_in user }
 
-  describe "GET /trust/:trust_id/incoming" do
-    subject { get trust_incoming_trusts_path(trust.id) }
+  describe "GET /outgoing_trust/:outgoing_trust_id/incoming" do
+    subject { get outgoing_trust_incoming_trusts_path(trust.id) }
 
     it "returns http success" do
       subject
@@ -30,7 +30,7 @@ RSpec.describe "IncomingTrusts", type: :request do
     end
   end
 
-  describe "GET /trusts/:trust_id/incoming/search" do
+  describe "GET /outgoing_trusts/:outgoing_trust_id/incoming/search" do
     let(:query) { incoming_trust.trust_name }
     let(:trusts) { [incoming_trust] }
     let(:redis) { Redis.new }
@@ -48,11 +48,11 @@ RSpec.describe "IncomingTrusts", type: :request do
       redis.del(redis_key)
       mock_trust_search(query, trusts)
       session_store.set :incoming_trust_ids, previously_saved
-      get search_trust_incoming_trusts_url(outgoing_trust.id), params: params
+      get search_outgoing_trust_incoming_trusts_url(outgoing_trust.id), params: params
     end
 
     it "Redirects to new projects for single result" do
-      expect(response).to redirect_to(new_trust_project_path(outgoing_trust.id))
+      expect(response).to redirect_to(new_outgoing_trust_project_path(outgoing_trust.id))
     end
 
     context "when multiple results" do
@@ -60,7 +60,7 @@ RSpec.describe "IncomingTrusts", type: :request do
       let(:trusts) { build_list :trust, 2, trust_name: query }
       let(:incoming_trust) { trusts.first }
       let(:link_back_to_search) do
-        search_trust_incoming_trusts_path(
+        search_outgoing_trust_incoming_trusts_path(
           outgoing_trust.id,
           "input-autocomplete" => incoming_trust.trust_name,
           commit: I18n.t("incoming_trusts.index.add_trust"),
@@ -119,17 +119,17 @@ RSpec.describe "IncomingTrusts", type: :request do
       let(:previously_saved) { [incoming_trust.id] }
 
       it "Redirects to new project for single result" do
-        expect(response).to redirect_to(new_trust_project_path(outgoing_trust.id))
+        expect(response).to redirect_to(new_outgoing_trust_project_path(outgoing_trust.id))
       end
     end
   end
 
-  describe "DELETE /trusts/:trust_id/incoming/:id" do
-    subject { delete trust_incoming_trust_path(outgoing_trust.id, incoming_trust.id) }
+  describe "DELETE /outgoing_trusts/:outgoing_trust_id/incoming/:id" do
+    subject { delete outgoing_trust_incoming_trust_path(outgoing_trust.id, incoming_trust.id) }
 
     it "Redirects to the search page" do
       subject
-      expect(response).to redirect_to(trust_incoming_trusts_path(outgoing_trust.id))
+      expect(response).to redirect_to(outgoing_trust_incoming_trusts_path(outgoing_trust.id))
     end
 
     context "incoming trust is present in session store" do
@@ -144,7 +144,7 @@ RSpec.describe "IncomingTrusts", type: :request do
 
       it "Redirects to the search page" do
         subject
-        expect(response).to redirect_to(trust_incoming_trusts_path(outgoing_trust.id))
+        expect(response).to redirect_to(outgoing_trust_incoming_trusts_path(outgoing_trust.id))
       end
     end
   end

@@ -28,7 +28,7 @@ RSpec.describe "/projects", type: :request do
       session_store.set(:incoming_trust_ids, [incoming_trust.id])
       mock_project_save(project, response_body)
     end
-    subject { post trust_projects_path(outgoing_trust.id) }
+    subject { post outgoing_trust_projects_path(outgoing_trust.id) }
 
     it "renders successfully" do
       subject
@@ -45,7 +45,7 @@ RSpec.describe "/projects", type: :request do
       mock_trust_find(outgoing_trust)
       session_store.set :academy_ids, [academy.id]
       session_store.set :incoming_trust_ids, [incoming_trust.id]
-      get new_trust_project_path(outgoing_trust.id, incoming_trust.id)
+      get new_outgoing_trust_project_path(outgoing_trust.id, incoming_trust.id)
     end
 
     it "renders a successful response" do

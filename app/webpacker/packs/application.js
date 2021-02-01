@@ -11,5 +11,5 @@ Turbolinks.start();
 initAll();
 
 document.addEventListener('turbolinks:load', () => {
-  autocompleteSelection('#autocomplete_trusts', '/trusts/search.json');
+  autocompleteSelection('#autocomplete_trusts', '/trusts.json');
 });
