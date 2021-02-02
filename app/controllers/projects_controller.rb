@@ -19,6 +19,14 @@ class ProjectsController < ApplicationController
     }
   end
 
+  # GET /projects
+  def index
+    @projects = Project.search(params)
+  end
+
+  # GET/projects/:id
+  def show; end
+
 private
 
   def project_params

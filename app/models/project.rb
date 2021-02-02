@@ -21,6 +21,8 @@ class Project
     3 => "Ofsted Inadequate Rating",
   }.freeze
 
+  API_SEARCH_ARGS = %w[searchTerm status ascending pageSize pageNumber].freeze
+
   attr_accessor :project_id, :project_name, :project_initiator_full_name, :project_initiator_uid, :project_status,
                 :esfa_intervention_reasons, :esfa_intervention_reasons_explained, :rdd_or_rsc_intervention_reasons,
                 :rdd_or_rsc_intervention_reasons_explained, :academy_ids, :outgoing_trust_id, :incoming_trust_id
@@ -36,6 +38,7 @@ class Project
 
     def search(args = {})
       query = args.transform_keys { |key| key.to_s.camelize(:lower) }
+      query.slice!(*API_SEARCH_ARGS)
       response = Api.get(PROJECTS_URL, query)
       data = JSON.parse(response.body)
       data["projects"].map { |project_data| new(project_data) }

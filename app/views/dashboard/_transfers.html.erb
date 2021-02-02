@@ -2,6 +2,14 @@
   <div class="govuk-grid-column-two-thirds">
     <p class="govuk-body"><%= t(".new_academy_transfer") %></p>
     <p><%= link_to t(".new_academy_transfer_button"), new_outgoing_trust_path, class: "govuk-button", data: { turbolinks: false } %>
+
+    <%= form_tag(projects_path, method: :get) do %>
+      <div class="govuk-form-group">
+        <%= label_tag :search_term, t(".search_label"), class: "govuk-body" %>
+        <%= text_field_tag :search_term, nil, class: "govuk-input" %>
+      </div>
+      <%= submit_tag t(".search_button"), class: "govuk-button govuk-button--secondary" %>
+    <% end %>
   </div>
 </div>
 
@@ -18,7 +26,7 @@
         <% @in_progress_projects.each do |in_progress_project| %>
           <tr class="govuk-table__row">
             <td>
-              <%= in_progress_project.project_name %>
+              <%= link_to in_progress_project.project_name, project_path(in_progress_project.project_id) %>
             </td>
             <td class="govuk-tag govuk-tag--blue">
               <%= t("models.project.#{in_progress_project.status_key}") %>
@@ -43,7 +51,7 @@
         <% @completed_projects.each do |in_progress_project| %>
           <tr class="govuk-table__row">
             <td>
-              <%= in_progress_project.project_name %>
+              <%= link_to in_progress_project.project_name, project_path(in_progress_project.project_id) %>
             </td>
             <td class="govuk-tag govuk-tag--green">
               <%= t("models.project.#{in_progress_project.status_key}") %>
