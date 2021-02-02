@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :trusts, only: [:index]
+  resources :projects, only: %i[index show]
 
   get "/pages/:page", to: "pages#show"
 

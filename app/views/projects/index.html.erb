@@ -1,0 +1,18 @@
+<% content_for(:page_header) { t(".page_header") } %>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header"><%= t(".name") %></th>
+      <th scope="col" class="govuk-table__header"><%= t(".link") %></th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <% @projects.each do |project| %>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header"><%= project.project_name %></th>
+        <td class="govuk-table__cell"><%= link_to t(".show"), project_path(project.project_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

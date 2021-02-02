@@ -64,4 +64,73 @@ RSpec.describe "/projects", type: :request do
       expect(response.body).to include(academy.urn)
     end
   end
+
+  describe "GET /projects" do
+    let(:projects) { build_list :project, 2 }
+    let(:args) { {} }
+
+    before do
+      mock_project_search(projects, args)
+      get projects_path, params: args
+    end
+
+    it "displays the projects" do
+      expect(response.body).to include(projects.first.project_name)
+      expect(response.body).to include(projects.last.project_name)
+    end
+
+    context "with search term" do
+      let(:args) { { search_term: Faker::Lorem.word } }
+
+      it "displays the projects" do
+        expect(response.body).to include(projects.first.project_name)
+        expect(response.body).to include(projects.last.project_name)
+      end
+    end
+
+    context "with status" do
+      let(:args) { { status: [1, 2].sample } }
+
+      it "displays the projects" do
+        expect(response.body).to include(projects.first.project_name)
+        expect(response.body).to include(projects.last.project_name)
+      end
+    end
+
+    context "with ascending" do
+      let(:args) { { ascending: [true, false].sample } }
+
+      it "displays the projects" do
+        expect(response.body).to include(projects.first.project_name)
+        expect(response.body).to include(projects.last.project_name)
+      end
+    end
+
+    context "with page size" do
+      let(:args) { { page_size: 20 } }
+
+      it "displays the projects" do
+        expect(response.body).to include(projects.first.project_name)
+        expect(response.body).to include(projects.last.project_name)
+      end
+    end
+
+    context "with page number" do
+      let(:args) { { page_number: 2 } }
+
+      it "displays the projects" do
+        expect(response.body).to include(projects.first.project_name)
+        expect(response.body).to include(projects.last.project_name)
+      end
+    end
+  end
+
+  describe "GET /projects/:id" do
+    let(:project) { build :project }
+
+    it "renders successfully" do
+      get project_path(project.project_id)
+      expect(response).to be_successful
+    end
+  end
 end

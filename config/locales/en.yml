@@ -77,6 +77,8 @@ en:
       new_academy_transfer_button: Start a new project
       in_progress_projects_heading: Ongoing academy transfer projects
       completed_projects_heading: Archieved academy transfer projects
+      search_label: Search for projects by name or reference number
+      search_button: Search
     conversions:
       sub_heading: Conversions
     significant_change:
@@ -123,6 +125,11 @@ en:
       next_action_link: Save and continue
       <<: *trust_attributes
       <<: *academy_attributes
+    index:
+      page_header: Projects
+      name: Name
+      link: Link
+      show: Show
 
   errors:
     summary: There is a problem
