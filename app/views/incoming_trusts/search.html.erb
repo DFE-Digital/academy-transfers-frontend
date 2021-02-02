@@ -12,8 +12,8 @@
         <%=
             link_to(
                 trust.trust_name,
-                search_trust_incoming_trusts_path(
-                  params[:trust_id],
+                search_outgoing_trust_incoming_trusts_path(
+                  params[:outgoing_trust_id],
                   "input-autocomplete" => trust.trust_name,
                   commit: t("incoming_trusts.index.add_trust")
                 )

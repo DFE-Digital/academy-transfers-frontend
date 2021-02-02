@@ -8,7 +8,7 @@
   <div class="govuk-grid-column-two-thirds">
     <ul>
     <% @trusts.each do |trust| %>
-      <li><%= link_to trust.trust_name, trust_path(trust.id) %></li>
+      <li><%= link_to trust.trust_name, outgoing_trust_path(trust.id) %></li>
     <% end %>
   </div>
 </div>

@@ -7,7 +7,7 @@
 <div class="govuk-width-container">
   <h2 class="govuk-heading-m"><%= t(".outgoing_trust") %></h2>
   <dl class="govuk-summary-list">
-    <%= summary_row(@outgoing_trust, :trust_name, change_url: trusts_path) %>
+    <%= summary_row(@outgoing_trust, :trust_name, change_url: new_outgoing_trust_path) %>
     <%= summary_row(@outgoing_trust, :trust_reference_number) %>
   </dl>
 </div>
@@ -17,7 +17,7 @@
 
   <% @academies.each do |academy| %>
     <dl class="govuk-summary-list">
-      <%= summary_row(academy, :academy_name, change_url: trust_academies_path(@outgoing_trust.id)) %>
+      <%= summary_row(academy, :academy_name, change_url: outgoing_trust_academies_path(@outgoing_trust.id)) %>
       <% [
          :urn,
          :local_authority_name,
@@ -38,7 +38,7 @@
 
   <% @incoming_trusts.each do |incoming_trust| %>
     <dl class="govuk-summary-list">
-      <%= summary_row(incoming_trust, :trust_name, change_url: trust_incoming_trusts_path(@outgoing_trust.id)) %>
+      <%= summary_row(incoming_trust, :trust_name, change_url: outgoing_trust_incoming_trusts_path(@outgoing_trust.id)) %>
       <% [
            :companies_house_number,
            :trust_reference_number,
@@ -61,5 +61,5 @@
 </div>
 
 <div class="govuk-width-container">
-  <%= link_to t(".next_action_link"), trust_projects_path(@outgoing_trust_id), method: :post, class: "govuk-button" %>
+  <%= link_to t(".next_action_link"), outgoing_trust_projects_path(@outgoing_trust_id), method: :post, class: "govuk-button" %>
 </div>

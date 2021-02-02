@@ -27,17 +27,17 @@ private
       project_initiator_full_name: current_user.username,
       project_status: Project::STATUS[:in_progress],
       academy_ids: session_store.get(:academy_ids),
-      outgoing_trust_id: params[:trust_id],
+      outgoing_trust_id: outgoing_trust_id,
       incoming_trust_id: session_store.get(:incoming_trust_ids).first,
     }
   end
 
   def session_store
-    @session_store ||= SessionStore.new(current_user, params[:trust_id])
+    @session_store ||= SessionStore.new(current_user, outgoing_trust_id)
   end
 
   def outgoing_trust_id
-    @outgoing_trust_id = params[:trust_id]
+    @outgoing_trust_id = params[:outgoing_trust_id]
   end
 
   def selected_academy_ids

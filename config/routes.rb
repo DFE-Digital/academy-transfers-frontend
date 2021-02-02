@@ -3,8 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :trusts, only: %i[index show] do
-    get :search, on: :collection
+  resources :outgoing_trusts, only: %i[new create show], path: :outgoing do
     resources :academies, only: %i[index create]
     resource :identify, only: %i[show create], controller: :identify
     resources :incoming_trusts, only: %i[index create destroy], path: :incoming do
@@ -12,6 +11,8 @@ Rails.application.routes.draw do
     end
     resources :projects, only: %i[new create]
   end
+
+  resources :trusts, only: [:index]
 
   get "/pages/:page", to: "pages#show"
 

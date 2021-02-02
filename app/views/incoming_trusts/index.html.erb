@@ -12,7 +12,7 @@
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__header"><%= incoming_trust.label %></th>
         <td class="govuk-table__cell">
-          <%= link_to t(".remove_trust"), trust_incoming_trust_path(params[:trust_id], incoming_trust.id), method: :delete %>
+          <%= link_to t(".remove_trust"), outgoing_trust_incoming_trust_path(params[:outgoing_trust_id], incoming_trust.id), method: :delete %>
         </td>
       </tr>
     <% end %>
@@ -21,7 +21,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <%= form_with url: search_trust_incoming_trusts_path, method: :get, local: true do |form| %>
+    <%= form_with url: search_outgoing_trust_incoming_trusts_path, method: :get, local: true do |form| %>
 
       <div class="govuk-form-group">
         <%= form.label :autocomplete_trusts, t(".search_label"), class: "govuk-hint" %>
