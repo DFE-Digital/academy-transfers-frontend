@@ -30,7 +30,7 @@ RSpec.describe "IncomingTrusts", type: :request do
     end
   end
 
-  describe "GET /outgoing_trusts/:outgoing_trust_id/incoming/search" do
+  describe "POST /outgoing_trusts/:outgoing_trust_id/incoming" do
     let(:query) { incoming_trust.trust_name }
     let(:trusts) { [incoming_trust] }
     let(:redis) { Redis.new }
@@ -48,7 +48,7 @@ RSpec.describe "IncomingTrusts", type: :request do
       redis.del(redis_key)
       mock_trust_search(query, trusts)
       session_store.set :incoming_trust_ids, previously_saved
-      get search_outgoing_trust_incoming_trusts_url(outgoing_trust.id), params: params
+      post outgoing_trust_incoming_trusts_url(outgoing_trust.id), params: params
     end
 
     it "Redirects to new projects for single result" do
@@ -60,7 +60,7 @@ RSpec.describe "IncomingTrusts", type: :request do
       let(:trusts) { build_list :trust, 2, trust_name: query }
       let(:incoming_trust) { trusts.first }
       let(:link_back_to_search) do
-        search_outgoing_trust_incoming_trusts_path(
+        outgoing_trust_incoming_trusts_path(
           outgoing_trust.id,
           "input-autocomplete" => incoming_trust.trust_name,
           commit: I18n.t("incoming_trusts.index.add_trust"),
@@ -77,7 +77,7 @@ RSpec.describe "IncomingTrusts", type: :request do
       end
 
       it "renders search template" do
-        expect(response.body).to include(I18n.t("incoming_trusts.search.heading"))
+        expect(response.body).to include(I18n.t("incoming_trusts.create.heading"))
       end
     end
 
