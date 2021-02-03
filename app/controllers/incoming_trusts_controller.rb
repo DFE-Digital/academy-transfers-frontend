@@ -5,10 +5,10 @@ class IncomingTrustsController < ApplicationController
     incoming_trusts
   end
 
-  def search
+  def create
     @trusts = search_result
 
-    return render :search unless @trusts.one? || empty_search?
+    return render :create unless @trusts.one? || empty_search?
 
     if @trusts.present?
       incoming_trust_ids << @trusts.first.id unless incoming_trust_ids.include?(@trusts.first.id)

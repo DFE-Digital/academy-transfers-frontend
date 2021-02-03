@@ -12,11 +12,12 @@
         <%=
             link_to(
                 trust.trust_name,
-                search_outgoing_trust_incoming_trusts_path(
+                outgoing_trust_incoming_trusts_path(
                   params[:outgoing_trust_id],
                   "input-autocomplete" => trust.trust_name,
                   commit: t("incoming_trusts.index.add_trust")
-                )
+                ),
+                method: :post
              )
         %>
       </li>

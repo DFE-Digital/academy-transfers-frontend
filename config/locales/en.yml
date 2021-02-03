@@ -98,7 +98,7 @@ en:
       search_button: Save and continue
       add_trust: Save and Add
       remove_trust: Remove
-    search:
+    create:
       page_header: Transfer an academy to another trust
       heading: Select incoming trust
   outgoing_trusts:

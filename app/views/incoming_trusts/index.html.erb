@@ -21,7 +21,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <%= form_with url: search_outgoing_trust_incoming_trusts_path, method: :get, local: true do |form| %>
+    <%= form_with url: outgoing_trust_incoming_trusts_path, local: true do |form| %>
 
       <div class="govuk-form-group">
         <%= form.label :autocomplete_trusts, t(".search_label"), class: "govuk-hint" %>
