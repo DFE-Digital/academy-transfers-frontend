@@ -1,3 +1,11 @@
+# Used to wrap around a piece of code and cache the outcome of that code.
+# So for example:
+#
+#   result = Blockcache.with(search_string) { search_process(search_string) }
+#
+# The first time this is called, `search_process` will be called to retrieve a result.
+# Until the cache expires the result will be retrieved from cache without calling `search_process`.
+#
 class BlockCache
   EXPIRY = 5.minutes
 

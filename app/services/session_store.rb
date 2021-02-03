@@ -1,3 +1,5 @@
+# A store for data being gathered in a multi-step process prior to being passed to the back end API.
+# For example, to collect user input in the steps leading up to creating a Project.
 class SessionStore
   EXPIRY = 1.day
 

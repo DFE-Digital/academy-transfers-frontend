@@ -1,3 +1,4 @@
+# A cache mechanism to store a Model instance's data after retrieval from the API.
 module ModelCache
   EXPIRY = 5.minutes
 
