@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def render_as_tab(name, *args)
-    tag.div(render(name.to_s(*args)), id: name, class: "govuk-tabs__panel")
+    tag.div(render(name.to_s, *args), id: name, class: "govuk-tabs__panel")
   end
 
   def summary_row(model, attribute, change_url: nil)
